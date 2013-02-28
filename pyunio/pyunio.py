@@ -1,7 +1,7 @@
 ##############################################
 # Name        : pyunio
 # Author      : Mihir Singh (@citruspi)
-# Version     : 0.1.0
+# Version     : 0.1.1
 # License     : MIT
 # Description : Basic Python implementation
 #			    of @ttezel's Node.js unio.

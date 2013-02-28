@@ -36,6 +36,8 @@ followed by
 	
 ### Usage
 
+#### Twitter - Get User Settings
+
 The following code is an implementation of Twitter's API with PyUnio:
 
 	from pyunio import pyunio
@@ -56,7 +58,25 @@ The following code is an implementation of Twitter's API with PyUnio:
 
 The output of `result.text` is
 
-> {"protected":false,"geo_enabled":false,"screen_name":"citrus","language":"en","time_zone":{"tzinfo_name":"America\/Halifax","name":"Atlantic Time (Canada)","utc_offset":-14400},"discoverable_by_email":false,"sleep_time":{"enabled":false,"start_time":null,"end_time":null},"use_cookie_personalization":false,"always_use_https":true}
+	{
+		"protected":false,
+		"geo_enabled":false,
+		"screen_name":"citrus",
+		"language":"en",
+		"time_zone":{
+			"tzinfo_name":"America\/Halifax",
+			"name":"Atlantic Time (Canada)",
+			"utc_offset":-14400
+		},
+		"discoverable_by_email":false,
+		"sleep_time":{
+			"enabled":false,
+			"start_time":null,
+			"end_time":null
+		},
+		"use_cookie_personalization":false,
+		"always_use_https":true
+	}
 
 This can then be loaded and parsed via Python's `JSON` module.
 
