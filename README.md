@@ -40,7 +40,10 @@ followed by
 
 The following code is an implementation of Twitter's API with PyUnio:
 
-	from pyunio import pyunio
+	import os
+	from pyunio import PyUnio
+	
+	pyunio = PyUnio(os.getcwd())
 	
 	params = {
 				'consumer_secret'    : 'ITS A SECRET',
@@ -51,12 +54,17 @@ The following code is an implementation of Twitter's API with PyUnio:
 	
 	pyunio.use('twitter')
 	
-	result, error = pyunio.get('account/settings', params)
+	try:
 	
-	print result.text
+		result = pyunio.get('account/settings', params)
+	
+		print result.text
+		
+	except Exception as e:
+	
+		raise Exception(e)
 
-
-The output of `result.text` is
+The output of `result.text` (with my Twitter settings) is
 
 	{
 		"protected":false,
