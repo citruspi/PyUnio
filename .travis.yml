@@ -4,6 +4,8 @@ python:
   - 2.7
   - 3.2
   - 3.3
-script: make test
+script: nosetests tests.py
 install:
-  - make deps
+  - pip install -r requirements.txt
+notifications:
+  hipchat: 8184f8d9650b0b57101a56f73af0a9@citruspi
