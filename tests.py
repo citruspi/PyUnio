@@ -1,11 +1,9 @@
 import os
 import json
 import unittest
-from pyunio import PyUnio
+from pyunio import pyunio
 
-"""Tests for PyUnio"""
-
-pyunio = PyUnio(os.getcwd())
+pyunio = pyunio.PyUnio(os.getcwd())
 
 pyunio.use('httpbin')
 
