@@ -13,7 +13,6 @@ try:
 	import json
 	import requests
 	from inspect import stack
-	from pprint import pprint
 	from requests_oauthlib import OAuth1
 	
 except ImportError as e:
