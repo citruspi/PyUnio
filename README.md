@@ -1,5 +1,7 @@
 ## PyUnio, API Consumption in a Snap
 
+[![Build Status](https://travis-ci.org/citruspi/PyUnio.png?branch=master)](https://travis-ci.org/citruspi/PyUnio)
+
 __PyUnio is currently in alpha and should not be considered stable.__
 
 ### Introducion
