@@ -1,7 +1,7 @@
 ##############################################
 # Name        : pyunio
 # Author      : Mihir Singh (@citruspi)
-# Version     : 0.1.1
+# Version     : 0.1.3
 # License     : MIT
 # Description : Basic Python implementation
 #			    of @ttezel's Node.js unio.
@@ -18,23 +18,24 @@ try:
 	
 except ImportError as e:
 	
-	print e	
+	raise Exception(e)
 
 class PyUnio(object):
 	
-	def __init__(self):
+	def __init__(self, cwd):
 		
 		self.specs = dict	
+		self.cwd   = cwd 
 				
 	def use(self, service):
 				
 		try:
 	
-			with open(os.getcwd()+'/specs/'+service+'.json') as service_definition: self.specs = json.load(service_definition)
+			with open(self.cwd+'/specs/'+service+'.json') as service_definition: self.specs = json.load(service_definition)
 													
 		except Exception as e:
 			
-			return (None, "Exception: %s" % (e))	
+			raise Exception(e)
 			
 	def get(self, route, params):
 
@@ -46,22 +47,22 @@ class PyUnio(object):
 					
 						oauth, params = self.oauth_handle(params)
 															   
-						return (getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
+						return getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
 																 params=params,
-												 				 auth=oauth), None)																
+												 				 auth=oauth)														
 					
 				else:
 					
-					return (getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
-														 params=params), None)
+					return getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
+														 params=params)
 	
 			else:
 	
-				return (None, "The '%s' method is not defined for the '%s' resource." % (stack()[0][3], route))		
+				raise Exception("The HTTP verb '%s' is not defined for '%s'.") % (stack()[0][3], route)	
 	
 		except KeyError as e:
 	
-			return (None, "Exception: %s" % (e))													
+			raise Exception(e)												
 				
 	def post(self, route, params):
 		
@@ -73,22 +74,22 @@ class PyUnio(object):
 					
 						oauth, params = self.oauth_handle(params)
 															   
-						return (getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
+						return getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
 																 params=params,
-												 				 auth=oauth), None)																
+												 				 auth=oauth)															
 					
 				else:
 					
-					return (getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
-														 params=params), None)
+					return getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
+														 params=params)
 		
 			else:
 		
-				return (None, "The '%s' method is not defined for the '%s' resource." % (stack()[0][3], route))		
+				raise Exception("The HTTP verb '%s' is not defined for '%s'.") % (stack()[0][3], route)	
 		
 		except KeyError as e:
 		
-			return (None, "Exception: %s" % (e))		
+			raise Exception(e)	
 		
 	def put(self, route, params):
 		
@@ -100,22 +101,22 @@ class PyUnio(object):
 					
 						oauth, params = self.oauth_handle(params)
 															   
-						return (getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
+						return getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
 																 params=params,
-												 				 auth=oauth), None)																
+												 				 auth=oauth)														
 					
 				else:
 					
-					return (getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
-														 params=params), None)
+					return getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
+														 params=params)
 		
 			else:
 		
-				return (None, "The '%s' method is not defined for the '%s' resource." % (stack()[0][3], route))		
+				raise Exception("The HTTP verb '%s' is not defined for '%s'.") % (stack()[0][3], route)	
 		
 		except KeyError as e:
 		
-			return (None, "Exception: %s" % (e))		
+			raise Exception(e)		
 		
 	def delete(self, route, params):
 		
@@ -127,22 +128,22 @@ class PyUnio(object):
 					
 						oauth, params = self.oauth_handle(params)
 															   
-						return (getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
+						return getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
 																 params=params,
-												 				 auth=oauth), None)																
+												 				 auth=oauth)															
 					
 				else:
 					
-					return (getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
-														 params=params), None)
+					return getattr(requests, stack()[0][3])(self.specs['api_root']+'/'+self.specs['resources'][route]['path'],
+														 params=params)
 		
 			else:
 		
-				return (None, "The '%s' method is not defined for the '%s' resource." % (stack()[0][3], route))		
+				raise Exception("The HTTP verb '%s' is not defined for '%s'.") % (stack()[0][3], route)	
 		
 		except KeyError as e:
 		
-			return (None, "Exception: %s" % (e))	
+			raise Exception(e)			
 			
 	def oauth_handle(self, params):
 		
@@ -163,7 +164,4 @@ class PyUnio(object):
 			
 		except Exception as e:
 			
-			print "Exception %s " % (e) 
-			quit()
-												
-pyunio = PyUnio()
+			raise Exception(e)											
