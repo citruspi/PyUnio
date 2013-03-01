@@ -30,9 +30,15 @@ or
 
 	pip install pyunio
 	
-followed by
+### Directory Structure
 
-	pip install -r requirements.txt
+	script.py
+	specs/
+		service.json
+		service.json
+		service.json
+		service.json
+		etc
 	
 ### Usage
 
@@ -41,9 +47,9 @@ followed by
 The following code is an implementation of Twitter's API with PyUnio:
 
 	import os
-	from pyunio import PyUnio
+	from pyunio import pyunio
 	
-	pyunio = PyUnio(os.getcwd())
+	pyunio = pyunio.PyUnio(os.getcwd())
 	
 	params = {
 				'consumer_secret'    : 'ITS A SECRET',
