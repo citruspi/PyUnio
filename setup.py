@@ -12,7 +12,7 @@ Documentation and usage can be found on the pyunio_ page on Github.
 
 setup(
 	name='pyunio',
-	version='0.1.1',
+	version='0.1.2',
 	author='Mihir Singh',
 	author_email='me@mihirsingh.com',
 	packages=['pyunio'],
