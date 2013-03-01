@@ -1,0 +1,22 @@
+{
+    "name": "httpbin",
+    "api_root": "https://httpbin.org",
+    "resources": {
+        "get": {
+            "path": "get",
+            "methods": [ "get" ]            
+        },
+        "post": {
+            "path": "post",
+            "methods": [ "post" ]            
+        },
+        "put": {
+            "path": "put",
+            "methods": [ "put" ]            
+        },
+        "delete": {
+            "path": "delete",
+            "methods": [ "delete" ]            
+        }
+    }
+}
