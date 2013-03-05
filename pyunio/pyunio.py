@@ -1,5 +1,5 @@
 ##############################################
-# Name        : pyunio
+# Name        : PyUnio
 # Author      : Mihir Singh (@citruspi)
 # Version     : 0.1.3
 # License     : MIT
@@ -42,7 +42,7 @@ class PyUnio(object):
 	
 			if stack()[0][3] in self.specs['resources'][route]['methods']:
 				
-				if ('consumer_key' or 'consumer_secret' or 'access_token' or 'access_token_secret') in params:
+				if ('oauth') in params:
 					
 						oauth, params = self.oauth_handle(params)
 															   
@@ -69,7 +69,7 @@ class PyUnio(object):
 		
 			if stack()[0][3] in self.specs['resources'][route]['methods']:
 				
-				if ('consumer_key' or 'consumer_secret' or 'access_token' or 'access_token_secret') in params:
+				if ('oauth') in params:
 					
 						oauth, params = self.oauth_handle(params)
 															   
@@ -96,7 +96,7 @@ class PyUnio(object):
 		
 			if stack()[0][3] in self.specs['resources'][route]['methods']:
 				
-				if ('consumer_key' or 'consumer_secret' or 'access_token' or 'access_token_secret') in params:
+				if ('oauth') in params:
 					
 						oauth, params = self.oauth_handle(params)
 															   
@@ -123,7 +123,7 @@ class PyUnio(object):
 		
 			if stack()[0][3] in self.specs['resources'][route]['methods']:
 				
-				if ('consumer_key' or 'consumer_secret' or 'access_token' or 'access_token_secret') in params:
+				if ('oauth') in params:
 					
 						oauth, params = self.oauth_handle(params)
 															   
@@ -148,16 +148,13 @@ class PyUnio(object):
 		
 		try:
 	
-			oauth = OAuth1(params['consumer_key'], 
-								   params['consumer_secret'],
-								   params['access_token'], 
-								   params['access_token_secret'],
-								   signature_type='auth_header')
+			oauth = OAuth1(params['ouath']['consumer_key'],       		
+    					   params['ouath']['consumer_secret'],
+                           params['ouath']['access_token'], 
+                           params['ouath']['access_token_secret'],
+                           signature_type='auth_header')
 								   
-			del params['consumer_key']
-			del params['consumer_secret']
-			del params['access_token']
-			del params['access_token_secret']	
+			del params['ouath']
 					
 			return (oauth, params)
 			
