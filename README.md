@@ -8,7 +8,7 @@ __PyUnio is currently in alpha and should not be considered stable.__
 
 `PyUnio` is an implementation of Tolga Tezel's Node.js project [unio](https://github.com/ttezel/unio). 
  
-It allows developers to consume REST API's in as little as three lines of code by predefining aspects of an API in a `JSON` file. These API definitions are called `specs` and should be placed in a directory titled `specs`.
+It allows developers to consume REST API's in as little as three lines of code by predefining aspects of an API in a `JSON` file. These API definitions are called `Specifications` and should be placed in a directory titled `specs`.
 
 Any `specs` should be downloaded from [here](https://github.com/ttezel/unio/tree/master/specs) or you can write your own.
 
@@ -68,10 +68,12 @@ The following code is an implementation of Twitter's API with PyUnio:
 	pyunio = pyunio.PyUnio(os.getcwd())
 	
 	params = {
-				'consumer_secret'    : 'ITS A SECRET',
-				'consumer_key'       : 'ITS A SECRET',
-				'access_token'       : 'ITS A SECRET',
-				'access_token_secret': 'ITS A SECRET'
+	            'oauth': {
+                            'consumer_secret'    : 'ITS A SECRET',
+                			'consumer_key'       : 'ITS A SECRET',
+                			'access_token'       : 'ITS A SECRET',
+                			'access_token_secret': 'ITS A SECRET'
+				         }
 			 }
 	
 	pyunio.use('twitter')
