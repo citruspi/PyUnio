@@ -2,5 +2,5 @@ dist
 .DS_Store
 *.pyc
 MANIFEST
-.sublime-project
-.sublime-workspace
+*.sublime-project
+*.sublime-workspace
