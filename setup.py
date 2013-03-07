@@ -1,8 +1,7 @@
 from distutils.core import setup
 
 long_description = \
-'''
-This is a Python implementation of Tolga Tezel's Node.js project unio_. 
+'''This is a Python implementation of Tolga Tezel's Node.js project unio_.
 
 Documentation and usage can be found on the pyunio_ page on Github.
 
@@ -11,17 +10,25 @@ Documentation and usage can be found on the pyunio_ page on Github.
 '''
 
 setup(
-	name='pyunio',
-	version='0.1.2',
-	author='Mihir Singh',
-	author_email='me@mihirsingh.com',
-	packages=['pyunio'],
-	url='http://pypi.python.org/pypi/pyunio/',
-	license='MIT License',
-	description='Python implementation of unio.',
-	long_description=long_description,
-	install_requires=[
-						'requests',
-						'requests_oauthlib'
-					 ]
+    name='pyunio',
+    version='0.1.4',
+    author='Mihir Singh',
+    author_email='me@mihirsingh.com',
+    packages=['pyunio'],
+    url='http://pypi.python.org/pypi/pyunio/',
+    license='MIT License',
+    description='Python implementation of unio.',
+    long_description=long_description,
+    install_requires=[
+                        'requests',
+                        'requests_oauthlib'
+                     ],
+    classifiers=[
+                    'Development Status :: 3 - Alpha',
+                    'Intended Audience :: Developers',
+                    'License :: OSI Approved :: MIT License',
+                    'Programming Language :: Python',
+                    'Topic :: System :: Networking',
+                    'Topic :: Internet'
+                ]
 )
