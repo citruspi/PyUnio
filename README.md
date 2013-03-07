@@ -37,43 +37,46 @@ or
 	project/
 		script.py
 		specs/
-			service.json
-			service.json
-			service.json
-			service.json
+			service1.json
+			service2.json
+			service3.json			
 			etc
 	
 ### Usage
 
-#### OAuth
+	from pyunio import pyunio
 
-`PyUnio` supports `OAuth` via the `requests_oauthlib` module.
-
-To use `OAuth` in a call, just include
-
-* `consumer_secret`
-* `consumer_key`
-* `access_token`
-* `access_token_secret`
-
-in the `params` `dict`.
+	params = {
+				'oauth' : {
+                            'consumer_secret'    : 'ITS A SECRET',
+                			'consumer_key'       : 'ITS A SECRET',
+                			'access_token'       : 'ITS A SECRET',
+                			'access_token_secret': 'ITS A SECRET'								
+						  },
+				'header': {
+                			'api_key': 'ITS A SECRET'
+						  },
+				'body':   {
+                			'username': 'iluv',
+                			'password': 'pie'
+						  }
+			 }
 
 #### Example: Twitter - Get User Settings
 
 The following code is an implementation of Twitter's API with PyUnio:
 
-	import os
 	from pyunio import pyunio
 	
-	pyunio = pyunio.PyUnio(os.getcwd())
-	
 	params = {
-	            'oauth': {
-                            'consumer_secret'    : 'ITS A SECRET',
+	            'oauth':  {
+							'consumer_secret'    : 'ITS A SECRET',
                 			'consumer_key'       : 'ITS A SECRET',
                 			'access_token'       : 'ITS A SECRET',
                 			'access_token_secret': 'ITS A SECRET'
-				         }
+				          },
+				'header': {},
+				'body'  : {}
 			 }
 	
 	pyunio.use('twitter')
