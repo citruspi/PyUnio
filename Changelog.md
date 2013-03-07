@@ -1,3 +1,9 @@
+## v0.1.4 (March 06, 2013)
+
+* Updated `README`
+* Cleaned up code
+* Implementation of header fields
+
 ## v0.1.3 (March 05, 2013)
 
 * Changed usage of `oauth`	
