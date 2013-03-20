@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Pyunio by citruspi</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Pyunio</h1>
+        <p>A Python implementation of Tezel's unio.</p>
+
+        <p class="view"><a href="https://github.com/citruspi/PyUnio">View the Project on GitHub <small>citruspi/PyUnio</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/citruspi/PyUnio/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/citruspi/PyUnio/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/citruspi/PyUnio">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><a href="https://travis-ci.org/citruspi/PyUnio"><img src="https://travis-ci.org/citruspi/PyUnio.png?branch=master" alt="Build Status"></a></p>
+
+<p><strong>PyUnio is currently in alpha and should not be considered stable.</strong></p>
+
+<h3>Introducion</h3>
+
+<p><code>PyUnio</code> is an implementation of Tolga Tezel's Node.js project <a href="https://github.com/ttezel/unio">unio</a>. </p>
+
+<p>It allows developers to consume REST API's in as little as three lines of code by predefining aspects of an API in a <code>JSON</code> file. These API definitions are called <code>Specifications</code> and should be placed in a directory titled <code>specs</code>.</p>
+
+<p>Any <code>specs</code> should be downloaded from <a href="https://github.com/ttezel/unio/tree/master/specs">here</a> or you can write your own.</p>
+
+<h3>Warning</h3>
+
+<p><code>PyUnio</code>'s development may not always run parallel to that of <code>unio</code>. </p>
+
+<p><code>PyUnio</code> may implement features not available in <code>unio</code>, or it may not implement features available in <code>unio</code>.</p>
+
+<p>For this reason, you should <strong>read this entire page</strong> for any important changes in future versions.</p>
+
+<h3>Install</h3>
+
+<p>Either</p>
+
+<pre><code>$ git clone git://github.com/citruspi/PyUnio.git
+$ cd PyUnio &amp;&amp; python setup.py
+$ pip install -r requirements.txt
+</code></pre>
+
+<p>or</p>
+
+<pre><code>$ pip install pyunio
+</code></pre>
+
+<h3>Directory Structure</h3>
+
+<pre><code>project/
+    script.py
+    specs/
+        service1.json
+        service2.json
+        service3.json           
+        etc
+</code></pre>
+
+<h3>Usage</h3>
+
+<pre><code>from pyunio import pyunio
+
+params = {
+            'oauth' : {
+                        'consumer_secret'    : 'ITS A SECRET',
+                        'consumer_key'       : 'ITS A SECRET',
+                        'access_token'       : 'ITS A SECRET',
+                        'access_token_secret': 'ITS A SECRET'                               
+                      },
+            'header': {
+                        'api_key': 'ITS A SECRET'
+                      },
+            'body':   {
+                        'username': 'iluv',
+                        'password': 'pie'
+                      }
+         }
+</code></pre>
+
+<h4>Example: Twitter - Get User Settings</h4>
+
+<p>The following code is an implementation of Twitter's API with PyUnio:</p>
+
+<pre><code>from pyunio import pyunio
+
+params = {
+            'oauth':  {
+                        'consumer_secret'    : 'ITS A SECRET',
+                        'consumer_key'       : 'ITS A SECRET',
+                        'access_token'       : 'ITS A SECRET',
+                        'access_token_secret': 'ITS A SECRET'
+                      },
+            'header': {},
+            'body'  : {}
+         }
+
+pyunio.use('twitter')
+
+try:
+
+    result = pyunio.get('account/settings', params)
+
+    print result.text
+
+except Exception as e:
+
+    raise Exception(e)
+</code></pre>
+
+<p>The output of <code>result.text</code> (with my Twitter account) is:</p>
+
+<pre><code>{
+    "protected":false,
+    "geo_enabled":false,
+    "screen_name":"citrus",
+    "language":"en",
+    "time_zone":{
+        "tzinfo_name":"America\/Halifax",
+        "name":"Atlantic Time (Canada)",
+        "utc_offset":-14400
+    },
+    "discoverable_by_email":false,
+    "sleep_time":{
+        "enabled":false,
+        "start_time":null,
+        "end_time":null
+    },
+    "use_cookie_personalization":false,
+    "always_use_https":true
+}
+</code></pre>
+
+<p>This can then be loaded and parsed via Python's <code>JSON</code> module:</p>
+
+<pre><code>parsed = json.loads(result.text)
+</code></pre>
+
+<h3>API</h3>
+
+<p>Coming Soon.</p>
+
+<h3>License</h3>
+
+<pre><code>Copyright © 2013 Mihir Singh &lt;me@mihirsingh.com&gt;
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of 
+this software and associated documentation files (the “Software”), to deal in 
+the Software without restriction, including without limitation the rights to 
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of 
+the Software, and to permit persons to whom the Software is furnished to do 
+so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all 
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY 
+KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE 
+WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, 
+DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF 
+CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN 
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS 
+IN THE SOFTWARE.
+</code></pre>
+
+<h3>Contributing</h3>
+
+<p>Just fork and submit a pull request ;)</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/citruspi">citruspi</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
