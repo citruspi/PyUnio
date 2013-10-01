@@ -13,7 +13,7 @@ try:
 
 except ImportError as e:
 
-    raise Exception(e)
+    raise e
 
 
 class pyunio(object):
@@ -31,7 +31,7 @@ class pyunio(object):
 
         except Exception as e:
 
-            raise Exception(e)
+            raise e
 
     def get(self, route, params):
 
@@ -64,7 +64,7 @@ class pyunio(object):
 
         except KeyError as e:
 
-            raise Exception(e)
+            raise e
 
     def post(self, route, params):
 
@@ -97,7 +97,7 @@ class pyunio(object):
 
         except KeyError as e:
 
-            raise Exception(e)
+            raise e
 
     def put(self, route, params):
 
@@ -130,7 +130,7 @@ class pyunio(object):
 
         except KeyError as e:
 
-            raise Exception(e)
+            raise e
 
     def delete(self, route, params):
 
@@ -163,7 +163,7 @@ class pyunio(object):
 
         except KeyError as e:
 
-            raise Exception(e)
+            raise e
 
     def oauth_handle(self, params):
 
@@ -179,6 +179,6 @@ class pyunio(object):
 
         except Exception as e:
 
-            raise Exception(e)
+            raise e
 
 pyunio = pyunio()
