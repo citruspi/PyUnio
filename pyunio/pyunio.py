@@ -28,6 +28,10 @@ class pyunio(object):
 
             with open('specs/' + service + '.json') as service_definition:
                 self.specs = json.load(service_definition)
+                if self.specs.get('ssl_verify', 'True').lower() == 'true':
+                    self.ssl_verify = True
+                else:
+                    self.ssl_verify = False
 
         except Exception as e:
 
@@ -48,14 +52,16 @@ class pyunio(object):
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
                                                  headers=params['header'],
-                                                 auth=self.oauth_handle(params))
+                                                 auth=self.oauth_handle(params),
+                                                 verify=self.ssl_verify)
 
                 else:
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
-                                                 headers=params['header'])
+                                                 headers=params['header'],
+                                                 verify=self.ssl_verify)
 
             else:
 
@@ -81,14 +87,16 @@ class pyunio(object):
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
                                                  headers=params['header'],
-                                                 auth=self.oauth_handle(params))
+                                                 auth=self.oauth_handle(params),
+                                                 verify=self.ssl_verify)
 
                 else:
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
-                                                 headers=params['header'])
+                                                 headers=params['header'],
+                                                 verify=self.ssl_verify)
 
             else:
 
@@ -114,14 +122,16 @@ class pyunio(object):
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
                                                  headers=params['header'],
-                                                 auth=self.oauth_handle(params))
+                                                 auth=self.oauth_handle(params),
+                                                 verify=self.ssl_verify)
+
 
                 else:
-
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
-                                                 headers=params['header'])
+                                                 headers=params['header'],
+                                                 verify=self.ssl_verify)
 
             else:
 
@@ -147,14 +157,16 @@ class pyunio(object):
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
                                                  headers=params['header'],
-                                                 auth=self.oauth_handle(params))
+                                                 auth=self.oauth_handle(params),
+                                                 verify=self.ssl_verify)
 
                 else:
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
-                                                 headers=params['header'])
+                                                 headers=params['header'],
+                                                 verify=self.ssl_verify)
 
             else:
 
