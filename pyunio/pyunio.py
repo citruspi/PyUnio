@@ -46,7 +46,7 @@ class pyunio(object):
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 params=params['body'],
+                                                 data=params['body'],
                                                  headers=params['header'],
                                                  auth=self.oauth_handle(params))
 
@@ -54,7 +54,7 @@ class pyunio(object):
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 params=params['body'],
+                                                 data=params['body'],
                                                  headers=params['header'])
 
             else:
@@ -79,7 +79,7 @@ class pyunio(object):
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 params=params['body'],
+                                                 data=params['body'],
                                                  headers=params['header'],
                                                  auth=self.oauth_handle(params))
 
@@ -87,7 +87,7 @@ class pyunio(object):
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 params=params['body'],
+                                                 data=params['body'],
                                                  headers=params['header'])
 
             else:
@@ -112,7 +112,7 @@ class pyunio(object):
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 params=params['body'],
+                                                 data=params['body'],
                                                  headers=params['header'],
                                                  auth=self.oauth_handle(params))
 
@@ -120,7 +120,7 @@ class pyunio(object):
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 params=params['body'],
+                                                 data=params['body'],
                                                  headers=params['header'])
 
             else:
@@ -145,7 +145,7 @@ class pyunio(object):
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 params=params['body'],
+                                                 data=params['body'],
                                                  headers=params['header'],
                                                  auth=self.oauth_handle(params))
 
@@ -153,7 +153,7 @@ class pyunio(object):
 
                     return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 params=params['body'],
+                                                 data=params['body'],
                                                  headers=params['header'])
 
             else:
