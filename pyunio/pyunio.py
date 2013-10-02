@@ -12,7 +12,6 @@ try:
     from requests_oauthlib import OAuth1
 
 except ImportError as e:
-
     raise e
 
 
@@ -21,6 +20,7 @@ class pyunio(object):
     def __init__(self):
 
         self.specs = dict
+
 
     def use(self, service):
 
@@ -34,34 +34,26 @@ class pyunio(object):
                     self.ssl_verify = False
 
         except Exception as e:
-
             raise e
+
 
     def get(self, route, params):
 
+        auth_data = None
+        if 'oauth' in params: 
+            auth_data = self.oauth_handle(params['oauth'])
         if 'body' not in params: params['body'] = {}
         if 'header' not in params: params['header'] = {}
 
         try:
 
             if stack()[0][3] in self.specs['resources'][route]['methods']:
-
-                if 'oauth' in params:
-
-                    return getattr(
-                        requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 data=params['body'],
-                                                 headers=params['header'],
-                                                 auth=self.oauth_handle(params),
-                                                 verify=self.ssl_verify)
-
-                else:
-
-                    return getattr(
-                        requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 data=params['body'],
-                                                 headers=params['header'],
-                                                 verify=self.ssl_verify)
+                return getattr(
+                    requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
+                                             data=params['body'],
+                                             headers=params['header'],
+                                             auth=auth_data,
+                                             verify=self.ssl_verify)
 
             else:
 
@@ -69,69 +61,51 @@ class pyunio(object):
                     stack()[0][3], route)
 
         except KeyError as e:
-
             raise e
+
 
     def post(self, route, params):
 
+        auth_data = None
+        if 'oauth' in params: 
+            auth_data = self.oauth_handle(params['oauth'])
         if 'body' not in params: params['body'] = {}
         if 'header' not in params: params['header'] = {}
 
         try:
 
             if stack()[0][3] in self.specs['resources'][route]['methods']:
-
-                if 'oauth' in params:
-
-                    return getattr(
+                return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
                                                  headers=params['header'],
-                                                 auth=self.oauth_handle(params),
+                                                 auth=auth_data,
                                                  verify=self.ssl_verify)
-
-                else:
-
-                    return getattr(
-                        requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 data=params['body'],
-                                                 headers=params['header'],
-                                                 verify=self.ssl_verify)
-
             else:
 
                 raise Exception("The HTTP verb '%s' is not defined for '%s'.") % (
                     stack()[0][3], route)
 
         except KeyError as e:
-
             raise e
+
 
     def put(self, route, params):
-
+        auth_data = None
+        if 'oauth' in params: 
+            auth_data = self.oauth_handle(params['oauth'])
         if 'body' not in params: params['body'] = {}
         if 'header' not in params: params['header'] = {}
 
         try:
 
             if stack()[0][3] in self.specs['resources'][route]['methods']:
-
-                if ('oauth') in params:
-
-                    return getattr(
-                        requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 data=params['body'],
-                                                 headers=params['header'],
-                                                 auth=self.oauth_handle(params),
-                                                 verify=self.ssl_verify)
-
-
-                else:
-                    return getattr(
-                        requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 data=params['body'],
-                                                 headers=params['header'],
-                                                 verify=self.ssl_verify)
+                return getattr(
+                    requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
+                                             data=params['body'],
+                                             headers=params['header'],
+                                             auth=auth_data,
+                                             verify=self.ssl_verify)
 
             else:
 
@@ -139,58 +113,48 @@ class pyunio(object):
                     stack()[0][3], route)
 
         except KeyError as e:
-
             raise e
+
 
     def delete(self, route, params):
-
+        auth_data = None
+        if 'oauth' in params: 
+            auth_data = self.oauth_handle(params['oauth'])
         if 'body' not in params: params['body'] = {}
         if 'header' not in params: params['header'] = {}
 
         try:
 
             if stack()[0][3] in self.specs['resources'][route]['methods']:
-
-                if ('oauth') in params:
-
-                    return getattr(
-                        requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 data=params['body'],
-                                                 headers=params['header'],
-                                                 auth=self.oauth_handle(params),
-                                                 verify=self.ssl_verify)
-
-                else:
-
-                    return getattr(
-                        requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
-                                                 data=params['body'],
-                                                 headers=params['header'],
-                                                 verify=self.ssl_verify)
-
+                return getattr(
+                    requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
+                                             data=params['body'],
+                                             headers=params['header'],
+                                             auth=auth_data,
+                                             verify=self.ssl_verify)
             else:
 
                 raise Exception("The HTTP verb '%s' is not defined for '%s'.") % (
                     stack()[0][3], route)
 
         except KeyError as e:
-
             raise e
 
-    def oauth_handle(self, params):
+
+    def oauth_handle(self, param_auth):
 
         try:
 
-            oauth = OAuth1(params['ouath']['consumer_key'],
-                           params['ouath']['consumer_secret'],
-                           params['ouath']['access_token'],
-                           params['ouath']['access_token_secret'],
+            oauth = OAuth1(param_auth['consumer_key'],
+                           param_auth['consumer_secret'],
+                           param_auth['access_token'],
+                           param_auth['access_token_secret'],
                            signature_type='auth_header')
 
             return (oauth)
 
         except Exception as e:
-
             raise e
+
 
 pyunio = pyunio()
