@@ -43,6 +43,7 @@ class pyunio(object):
         if 'oauth' in params: 
             auth_data = self.oauth_handle(params['oauth'])
         if 'body' not in params: params['body'] = {}
+        if 'params' not in params: params['params'] = {}
         if 'header' not in params: params['header'] = {}
 
         try:
@@ -51,6 +52,7 @@ class pyunio(object):
                 return getattr(
                     requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                              data=params['body'],
+                                             params=params['params'],
                                              headers=params['header'],
                                              auth=auth_data,
                                              verify=self.ssl_verify)
@@ -70,6 +72,7 @@ class pyunio(object):
         if 'oauth' in params: 
             auth_data = self.oauth_handle(params['oauth'])
         if 'body' not in params: params['body'] = {}
+        if 'params' not in params: params['params'] = {}
         if 'header' not in params: params['header'] = {}
 
         try:
@@ -78,6 +81,7 @@ class pyunio(object):
                 return getattr(
                         requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                                  data=params['body'],
+                                                 params=params['params'],
                                                  headers=params['header'],
                                                  auth=auth_data,
                                                  verify=self.ssl_verify)
@@ -95,6 +99,7 @@ class pyunio(object):
         if 'oauth' in params: 
             auth_data = self.oauth_handle(params['oauth'])
         if 'body' not in params: params['body'] = {}
+        if 'params' not in params: params['params'] = {}
         if 'header' not in params: params['header'] = {}
 
         try:
@@ -103,6 +108,7 @@ class pyunio(object):
                 return getattr(
                     requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                              data=params['body'],
+                                             params=params['params'],
                                              headers=params['header'],
                                              auth=auth_data,
                                              verify=self.ssl_verify)
@@ -121,6 +127,7 @@ class pyunio(object):
         if 'oauth' in params: 
             auth_data = self.oauth_handle(params['oauth'])
         if 'body' not in params: params['body'] = {}
+        if 'params' not in params: params['params'] = {}
         if 'header' not in params: params['header'] = {}
 
         try:
@@ -129,6 +136,7 @@ class pyunio(object):
                 return getattr(
                     requests, stack()[0][3])(self.specs['api_root'] + '/' + self.specs['resources'][route]['path'],
                                              data=params['body'],
+                                             params=params['params'],
                                              headers=params['header'],
                                              auth=auth_data,
                                              verify=self.ssl_verify)
