@@ -1,7 +1,12 @@
 import json
 import unittest
+import sys
+if sys.version_info[0] == 2:
+    from urllib import urlencode
+else:
+    from urllib.parse import urlencode
+
 from pyunio import pyunio
-import urllib 
 
 pyunio.use('httpbin')
 
@@ -36,7 +41,7 @@ class pyuniotTest(unittest.TestCase):
 
     def test_delete(self):
         response = json.loads(pyunio.delete('delete', params_body).text)
-        self.assertEqual(response['data'], urllib.urlencode({'name':'James Bond'}))
+        self.assertEqual(response['data'], urlencode({'name':'James Bond'}))
 
 
 if __name__ == '__main__':
