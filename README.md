@@ -44,74 +44,73 @@ or
 	
 ### Usage
 
-	from pyunio import pyunio
+```python
+from pyunio import pyunio
 
-	params = {
-				'oauth' : {
-                            'consumer_secret'    : 'ITS A SECRET',
-                			'consumer_key'       : 'ITS A SECRET',
-                			'access_token'       : 'ITS A SECRET',
-                			'access_token_secret': 'ITS A SECRET'								
-						  },
-				'header': {
-                			'api_key': 'ITS A SECRET'
-						  },
-				'body':   {
-                			'username': 'iluv',
-                			'password': 'pie'
-						  }
-			 }
+params = {
+	'oauth': {
+		'consumer_secret'	 : 'ITS A SECRET',
+		'consumer_key'   	 : 'ITS A SECRET',
+		'access_token'       : 'ITS A SECRET',
+		'access_token_secret': 'ITS A SECRET'								
+	},
+	'header': {
+		'api_key': 'ITS A SECRET'
+	},
+	'body': {
+		'username': 'iluv',
+		'password': 'pie'
+	}
+}
+```
 
 #### Example: Twitter - Get User Settings
 
 The following code is an implementation of Twitter's API with PyUnio:
 
-	from pyunio import pyunio
+```python
+from pyunio import pyunio
 	
-	params = {
-	            'oauth':  {
-							'consumer_secret'    : 'ITS A SECRET',
-                			'consumer_key'       : 'ITS A SECRET',
-                			'access_token'       : 'ITS A SECRET',
-                			'access_token_secret': 'ITS A SECRET'
-				          },
-				'header': {},
-				'body'  : {}
-			 }
+params = {
+	'oauth':  {
+		'consumer_secret'    : 'ITS A SECRET',
+		'consumer_key'       : 'ITS A SECRET',
+		'access_token'       : 'ITS A SECRET',
+		'access_token_secret': 'ITS A SECRET'
+	},
+	'header': {},
+	'body'  : {}
+}
 	
-	pyunio.use('twitter')
+pyunio.use('twitter')
 	
-	try:
-	
-		result = pyunio.get('account/settings', params)
-	
-		print result.text
-		
-	except Exception as e:
-	
-		raise Exception(e)
+result = pyunio.get('account/settings', params)
+print result.text
+```
 
 The output of `result.text` (with my Twitter account) is:
 
-	{
-		"protected":false,
-		"geo_enabled":false,
-		"screen_name":"citrus",
-		"language":"en",
-		"time_zone":{
-			"tzinfo_name":"America\/Halifax",
-			"name":"Atlantic Time (Canada)",
-			"utc_offset":-14400
-		},
-		"discoverable_by_email":false,
-		"sleep_time":{
-			"enabled":false,
-			"start_time":null,
-			"end_time":null
-		},
-		"use_cookie_personalization":false,
-		"always_use_https":true
-	}
+```python
+{
+	"protected":false,
+	"geo_enabled":false,
+	"screen_name":"citrus",
+	"language":"en",
+	"time_zone":{
+		"tzinfo_name":"America\/Halifax",
+		"name":"Atlantic Time (Canada)",
+		"utc_offset":-14400
+	},
+	"discoverable_by_email":false,
+	"sleep_time":{
+		"enabled":false,
+		"start_time":null,
+		"end_time":null
+	},
+	"use_cookie_personalization":false,
+	"always_use_https":true
+}
+```
 
 This can then be loaded and parsed via Python's `JSON` module:
 
